@@ -25,10 +25,22 @@ CLI, instead of showing a passphrase dialog.
 
 ```powershell
 dotnet publish -c Release -r win-x64 --self-contained true
+# or for ARM64 Windows:
+dotnet publish -c Release -r win-arm64 --self-contained true
 ```
 
 The published `pinentry-1password.exe` will be in
-`bin\Release\net10.0\win-x64\publish\`.
+`bin\Release\net10.0\<rid>\publish\`.
+
+Prebuilt, signed-provenance binaries for `win-x64` and `win-arm64` are also
+published on the [Releases](../../releases) page for every tagged version,
+along with SHA256 checksums and a
+[build provenance attestation](https://docs.github.com/en/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds).
+Verify a downloaded binary with:
+
+```powershell
+gh attestation verify pinentry-1password-win-x64.exe --owner jessehouwing
+```
 
 ## Install
 
